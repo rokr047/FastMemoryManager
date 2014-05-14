@@ -9,7 +9,7 @@
 
 #define RUN_FMM_TEST 1
 #define RUN_NEW_TEST 1
-#define DEBUG 0
+#define DEBUG 1
 
 using namespace std;
 
@@ -40,7 +40,7 @@ public:
     {
         this->id = id;
         this->random1 = id << 14;
-        this->random2 = id >> 4;
+        this->random2 = id << 4;
     }
 };
 
@@ -88,7 +88,6 @@ int main(int argc, char* argv[])
     {
         s_Objs[i] = new testData();
         s_Objs[i]->setData(i);
-        cout << "Element "<< s_Objs[i]->id<< " has been added\n";
     }
 
     #if DEBUG
@@ -110,6 +109,8 @@ int main(int argc, char* argv[])
 	cout << "\nstat :: Time taken for default new allocations to complete: " << elapsedTime << " seconds\n";
 #endif // RUN_NEW_TEST
 
+
+
 #if RUN_FMM_TEST
 	g_StartTime = clock();
 
@@ -121,7 +122,6 @@ int main(int argc, char* argv[])
     {
         s_Objs[i] = td_FFM->Add();
         s_Objs[i]->setData(i);
-        cout << "Element "<< s_Objs[i]->id<< " has been added\n";
     }
     cout << "Done.\n";
 

@@ -154,6 +154,8 @@ void FMManager<T>::Remove(T* obj)
     assert(obj != NULL);
     assert(m_head->numOfAllocatedBlocks >= 0);
 
+    obj->~T();
+
     Bookmark* bkmk = (Bookmark*)((char*)obj + sizeof(Bookmark));
     bkmk->nextEmptyBlock = m_head->head ;
     m_head->head = (void*)bkmk;
