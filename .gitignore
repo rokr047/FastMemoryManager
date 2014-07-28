@@ -1,3 +1,7 @@
 # Code Blocks project files
 *.cbp
 
+*.depend
+*.exe
+*.layout
+*.o
